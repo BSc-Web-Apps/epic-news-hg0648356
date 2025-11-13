@@ -3,6 +3,7 @@ import { SearchBar } from '#app/components/search-bar.tsx'
 import { Button } from '#app/components/ui/button.tsx'
 import { UserDropdown } from '#app/components/user-dropdown.tsx'
 import { useOptionalUser } from '#app/utils/user.ts'
+import epiclogo from '~/assets/jpg/Screenshot 2025-10-16 100113.png'
 
 export default function HeaderWithSearch() {
 	const matches = useMatches()
@@ -13,6 +14,9 @@ export default function HeaderWithSearch() {
 	return (
 		<header className="container py-6">
 			<nav className="flex flex-wrap items-center justify-between gap-4 sm:flex-nowrap md:gap-8">
+				<div>
+					<img alt="logo" src={epiclogo} className="h-15 w-20" />
+				</div>
 				<div className="ml-auto hidden max-w-sm flex-1 sm:block">
 					{searchBar}
 				</div>
