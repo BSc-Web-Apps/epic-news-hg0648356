@@ -6,7 +6,6 @@ import Document from './components/shared-layout/Document.tsx'
 import { useNonce } from './utils/nonce-provider.ts'
 import rootLinkElements from './utils/providers/rootLinkElements.ts'
 import portrait1 from '~/assets/jpg/hairybiker.jpg'
-import ShareButtons from './components/molecules/SocialMediaButtons.tsx'
 import { RiTwitterXFill, RiLinkedinBoxFill } from 'react-icons/ri'
 import portrait2 from '~/assets/jpg/nintchdbpict000338874152.jpg'
 
@@ -53,18 +52,27 @@ export default function App() {
 			<div className="flex h-screen flex-col justify-between">
 				<div className="flex-1">
 					<main className="grid h-full place-items-center">
-						<h1 className="text-mega">Your Journey Begins!</h1>
-						<TeamMemberCard
-							name="Geoff Einstein"
-							role="Senior Visionary"
-							imageSrc={portrait1}
-						></TeamMemberCard>
+						<h1 className="text-mega">Epic News</h1>
+						<h2 className="text-2xl">harry gee news read now</h2>
+						<div className="m-4 flex gap-4">
+							<TeamMemberCard
+								name="Geoff Einstein"
+								role="Senior Visionary"
+								imageSrc={portrait1}
+							></TeamMemberCard>
 
-						<TeamMemberCard
-							name="Shaun Dunlop"
-							role="Office Catering"
-							imageSrc={portrait2}
-						></TeamMemberCard>
+							<TeamMemberCard
+								name="Shaun Dunlop"
+								role="Office Catering"
+								imageSrc={portrait2}
+							></TeamMemberCard>
+
+							<TeamMemberCard
+								name="Shaun Dunlop"
+								role="Office Catering"
+								imageSrc={portrait2}
+							></TeamMemberCard>
+						</div>
 					</main>
 				</div>
 			</div>
