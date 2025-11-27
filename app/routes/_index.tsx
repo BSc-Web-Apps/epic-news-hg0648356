@@ -5,12 +5,10 @@ export const meta: MetaFunction = () => [{ title: 'Epic News' }]
 export default function Index() {
 	return (
 		<main className="grid h-full place-items-center">
-			<h1 className="text-mega">
-				Hello from{' '}
-				<pre className="prose bg-primary text-primary-foreground rounded-lg p-6">
-					app/routes/_index.tsx
-				</pre>
-			</h1>
+			<h1 className="text-mega">Your Journey Begins!</h1>
+			<p className="text-base text-gray-600 md:text-lg lg:text-xl">
+				Welcome to Epic News, where the latest developments in tech are found.
+			</p>
 		</main>
 	)
 }

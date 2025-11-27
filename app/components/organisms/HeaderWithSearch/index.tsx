@@ -12,12 +12,11 @@ export default function HeaderWithSearch() {
 	const user = useOptionalUser()
 
 	return (
-		<header className="bg-primary container py-6">
-			<nav className="container flex flex-wrap items-center justify-between gap-4 sm:flex-nowrap md:gap-8">
+		<header className="container py-6">
+			<nav className="flex flex-wrap items-center justify-between gap-4 sm:flex-nowrap md:gap-8">
 				<Link to="/">
-					<div className="flex items-center gap-4">
-						<img src={epicLogo} alt="Epic News Logo" className="w-16" />
-						<span className="text-foreground text-sm">Epic News</span>
+					<div>
+						<img alt="logo" src={epicLogo} className="h-15 w-20" />
 					</div>
 				</Link>
 
@@ -34,6 +33,15 @@ export default function HeaderWithSearch() {
 						className="text-muted-foreground hover:text-foreground text-sm font-semibold transition"
 					>
 						About us
+					</Link>
+				</div>
+				<div className="flex">
+					<Link
+						to="/contact-us"
+						prefetch="intent"
+						className="text-foreground hover:text-muted-foreground text-sm font-semibold transition"
+					>
+						Contact us
 					</Link>
 				</div>
 
