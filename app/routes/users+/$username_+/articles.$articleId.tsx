@@ -135,7 +135,10 @@ export default function ArticleRoute({
 				<ul className="flex flex-wrap gap-5 py-5">
 					{loaderData.article.images.map((image) => (
 						<li key={image.objectKey}>
-							<a href={getArticleImgSrc(image.objectKey)}>
+							<a
+								href={getArticleImgSrc(image.objectKey)}
+								title={image.altText ?? 'Article image'}
+							>
 								<Img
 									src={getArticleImgSrc(image.objectKey)}
 									alt={image.altText ?? ''}
@@ -218,7 +221,7 @@ export function DeleteArticle({
 
 export const meta: Route.MetaFunction = ({ data, params, matches }) => {
 	const articlesMatch = matches.find(
-		(m) => m?.id === 'routes/users+/$username_+/articles',
+		(m: { id: string }) => m?.id === 'routes/users+/$username_+/articles',
 	) as { data: ArticlesRoute.ComponentProps['loaderData'] } | undefined
 
 	const displayName = articlesMatch?.data?.owner.name ?? params.username
