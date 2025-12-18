@@ -14,7 +14,7 @@ export default function HeaderWithSearch() {
 
 	return (
 		<header className="container py-6">
-			<nav className="flex flex-wrap items-center justify-between gap-4 sm:flex-nowrap md:gap-8">
+			<nav className="flex flex-wrap items-end justify-between gap-4 sm:flex-nowrap md:gap-8">
 				<Link to="/">
 					<div>
 						<img alt="logo" src={epicLogo} className="h-15 w-20" />
@@ -25,7 +25,7 @@ export default function HeaderWithSearch() {
 					{isAdminUser && (
 						<Link
 							to="/admin-review"
-							className="text-foreground rounded-lg bg-green-900 px-4 py-2 text-sm font-semibold transition hover:bg-green-800"
+							className="bg-primary text-primary-foreground rounded-lg px-4 py-2 text-sm font-semibold transition hover:opacity-90"
 						>
 							Admin Review
 						</Link>
@@ -43,8 +43,6 @@ export default function HeaderWithSearch() {
 					>
 						About us
 					</Link>
-				</div>
-				<div className="flex">
 					<Link
 						to="/contact-us"
 						prefetch="intent"

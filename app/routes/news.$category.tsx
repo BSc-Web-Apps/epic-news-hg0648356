@@ -1,8 +1,8 @@
 import { invariant } from '@epic-web/invariant'
 import { type LoaderFunctionArgs, data, useLoaderData } from 'react-router'
 import ArticleCard from '~/components/organisms/ArticleCard.tsx'
-import { toTitleCase } from '~/utils/stringUtils.ts'
 import { prisma } from '~/utils/db.server.ts'
+import { toTitleCase } from '~/utils/stringUtils.ts'
 
 export async function loader({ params }: LoaderFunctionArgs) {
 	const { category } = params
@@ -14,12 +14,16 @@ export async function loader({ params }: LoaderFunctionArgs) {
 			category: {
 				slug: category, // Retrieves only articles in the specified category
 			},
+			isPublished: true,
 		},
 		select: {
 			id: true,
 			title: true,
 			category: { select: { name: true } },
-			images: { select: { id: true } },
+			images: { select: { id: true, objectKey: true } },
+		},
+		orderBy: {
+			createdAt: 'desc',
 		},
 	})
 
@@ -39,6 +43,7 @@ export default function NewsCategoryPage() {
 						articleId={article.id}
 						title={article.title}
 						category={article.category?.name}
+						objectKey={article.images[0]?.objectKey}
 					/>
 				))}
 			</div>
