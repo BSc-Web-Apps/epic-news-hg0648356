@@ -32,7 +32,10 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 export default function NewsCategoryPage() {
 	const { categoryTitle, filteredArticles } = useLoaderData<typeof loader>()
-	return (
+
+	const hasArticles = filteredArticles.length > 0
+
+	return hasArticles ? (
 		<div className="container py-16">
 			<h2 className="text-h2 mb-8">{categoryTitle}</h2>
 
@@ -47,6 +50,11 @@ export default function NewsCategoryPage() {
 					/>
 				))}
 			</div>
+		</div>
+	) : (
+		<div className="container py-16">
+			<h2 className="text-h2 mb-8">{categoryTitle}</h2>
+			<div>No published articles found</div>
 		</div>
 	)
 }
