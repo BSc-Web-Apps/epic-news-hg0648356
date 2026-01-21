@@ -6,18 +6,21 @@ export interface FooterProps {
 }
 
 const FooterBasic = ({
-	companyName = 'CHANGE THIS TO YOUR COMPANY NAME!',
+	companyName = 'Epic News',
 	altText = 'Our company logo',
 }: FooterProps) => {
 	return (
-		<footer className="bg-secondary dark:bg-dark-secondary py-16">
-			<div className="container flex flex-col items-center justify-between gap-y-8 lg:flex-row">
-				<div className="w-20">
-					<img src={logo} alt={altText} />
+		<footer className="border-t border-slate-800 bg-slate-900 py-12">
+			<div className="container mx-auto flex flex-col items-center justify-between gap-y-6 px-6 lg:flex-row">
+				<div className="flex items-center gap-3">
+					<img src={logo} alt={altText} className="h-8 w-8 opacity-80" />
+					<span className="text-sm font-semibold text-white">
+						{companyName}
+					</span>
 				</div>
 
-				<div className="text-muted-foreground text-opacity-50 dark:text-dark-muted-foreground text-xs">
-					&copy; {companyName} | {new Date().getFullYear()}
+				<div className="text-xs text-slate-500">
+					&copy; {new Date().getFullYear()} {companyName}. All rights reserved.
 				</div>
 			</div>
 		</footer>
