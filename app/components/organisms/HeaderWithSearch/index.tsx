@@ -2,17 +2,56 @@ import { useMatches, Link } from 'react-router'
 import { SearchBar } from '#app/components/search-bar.tsx'
 import { Button } from '#app/components/ui/button.tsx'
 import { UserDropdown } from '#app/components/user-dropdown.tsx'
-import { useOptionalUser } from '#app/utils/user.ts'
+import { useOptionalUser, userHasRole } from '#app/utils/user.ts'
+import epicLogo from '~/assets/png/epic-news-logo.png'
 
 export default function HeaderWithSearch() {
 	const matches = useMatches()
 	const isOnSearchPage = matches.find((m) => m.id === 'routes/users+/index')
 	const searchBar = isOnSearchPage ? null : <SearchBar status="idle" />
 	const user = useOptionalUser()
+	const isAdminUser = user ? userHasRole(user, 'admin') : false
 
 	return (
 		<header className="container py-6">
-			<nav className="flex flex-wrap items-center justify-between gap-4 sm:flex-nowrap md:gap-8">
+			<nav className="flex flex-wrap items-end justify-between gap-4 sm:flex-nowrap md:gap-8">
+				<Link to="/">
+					<div>
+						<img alt="logo" src={epicLogo} className="h-15 w-20" />
+					</div>
+				</Link>
+
+				<div className="flex flex-1 justify-center gap-8">
+					{isAdminUser && (
+						<Link
+							to="/admin-review"
+							className="bg-primary text-primary-foreground rounded-lg px-4 py-2 text-sm font-semibold transition hover:opacity-90"
+						>
+							Admin Review
+						</Link>
+					)}
+					<Link
+						to="/news"
+						className="text-muted-foreground hover:text-foreground text-sm font-semibold transition"
+					>
+						News
+					</Link>
+					<Link
+						to="/about-us"
+						prefetch="intent"
+						className="text-muted-foreground hover:text-foreground text-sm font-semibold transition"
+					>
+						About us
+					</Link>
+					<Link
+						to="/contact-us"
+						prefetch="intent"
+						className="text-foreground hover:text-muted-foreground text-sm font-semibold transition"
+					>
+						Contact us
+					</Link>
+				</div>
+
 				<div className="ml-auto hidden max-w-sm flex-1 sm:block">
 					{searchBar}
 				</div>

@@ -30,6 +30,12 @@ export async function loader({ params }: Route.LoaderArgs) {
 			content: true,
 			ownerId: true,
 			updatedAt: true,
+			category: {
+				select: {
+					id: true,
+					name: true,
+				},
+			},
 			images: {
 				select: {
 					altText: true,
@@ -120,11 +126,19 @@ export default function ArticleRoute({
 			<h2 id="article-title" className="text-h2 mb-2 pt-12 lg:mb-6">
 				{loaderData.article.title}
 			</h2>
+			<div className="mb-4">
+				<p className="bg-card text-card-foreground w-fit rounded-lg px-4 py-2 text-sm">
+					{loaderData.article.category?.name ?? 'General News'}
+				</p>
+			</div>
 			<div className={`${displayBar ? 'pb-24' : 'pb-12'} overflow-y-auto`}>
 				<ul className="flex flex-wrap gap-5 py-5">
 					{loaderData.article.images.map((image) => (
 						<li key={image.objectKey}>
-							<a href={getArticleImgSrc(image.objectKey)}>
+							<a
+								href={getArticleImgSrc(image.objectKey)}
+								title={image.altText ?? 'Article image'}
+							>
 								<Img
 									src={getArticleImgSrc(image.objectKey)}
 									alt={image.altText ?? ''}
@@ -207,7 +221,7 @@ export function DeleteArticle({
 
 export const meta: Route.MetaFunction = ({ data, params, matches }) => {
 	const articlesMatch = matches.find(
-		(m) => m?.id === 'routes/users+/$username_+/articles',
+		(m: { id: string }) => m?.id === 'routes/users+/$username_+/articles',
 	) as { data: ArticlesRoute.ComponentProps['loaderData'] } | undefined
 
 	const displayName = articlesMatch?.data?.owner.name ?? params.username

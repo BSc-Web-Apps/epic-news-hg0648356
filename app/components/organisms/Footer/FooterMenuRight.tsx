@@ -1,58 +1,30 @@
-import { Link, NavLink } from 'react-router'
-import logo from '#app/assets/svg/icon-placeholder.svg'
-import SocialMediaButtons from '#app/components/molecules/SocialMediaButtons'
-import { Button } from '#app/components/ui/button.tsx'
-import { type FooterProps } from './FooterBasic'
+import logo from '~/assets/svg/icon-placeholder.svg'
 
-const FooterMenuRight = ({
-	companyName = 'CHANGE THIS TO YOUR COMPANY NAME!',
+export interface FooterProps {
+	companyName?: string
+	altText?: string
+}
+
+const FooterBasic = ({
+	companyName = 'Epic News',
 	altText = 'Our company logo',
 }: FooterProps) => {
 	return (
-		<footer className="bg-secondary dark:bg-dark-secondary lg:py-16">
-			<div className="border-muted-foreground/75 dark:border-dark-muted-foreground/75 container items-center justify-between border-b py-8 lg:flex">
-				<Link to="/" className="flex w-20 items-center justify-center lg:w-24">
-					<img src={logo} alt={altText} />
-				</Link>
-
-				<div className="lg:flex">
-					<div className="text-secondary-foreground dark:text-dark-secondary-foreground flex items-start gap-6 py-8 font-bold lg:mr-24">
-						<div>
-							<NavLink to="#">Nav Label</NavLink>
-						</div>
-						<div>
-							<NavLink to="#">Nav Label</NavLink>
-						</div>
-						<div>
-							<NavLink to="#">Nav Label</NavLink>
-						</div>
-					</div>
-
-					<div className="flex items-center gap-6">
-						<div className="lg:mr-4">
-							<Link to="/signup">
-								<Button>Sign Up</Button>
-							</Link>
-						</div>
-						<div>
-							<Link to="/login">
-								<Button variant="secondary">Log In</Button>
-							</Link>
-						</div>
-					</div>
+		<footer className="border-t border-slate-800 bg-slate-900 py-12">
+			<div className="container mx-auto flex flex-col items-center justify-between gap-y-6 px-6 lg:flex-row">
+				<div className="flex items-center gap-3">
+					<img src={logo} alt={altText} className="h-8 w-8 opacity-80" />
+					<span className="text-sm font-semibold text-white">
+						{companyName}
+					</span>
 				</div>
-			</div>
 
-			<div className="container flex items-center justify-between py-8">
-				<div className="text-muted-foreground/75 dark:text-dark-muted-foreground/75 text-xs">
-					&copy; {companyName} | {new Date().getFullYear()}
-				</div>
-				<div className="flex w-20 items-center justify-center lg:w-24">
-					<SocialMediaButtons />
+				<div className="text-xs text-slate-500">
+					&copy; {new Date().getFullYear()} {companyName}. All rights reserved.
 				</div>
 			</div>
 		</footer>
 	)
 }
 
-export default FooterMenuRight
+export default FooterBasic
